@@ -1,0 +1,90 @@
+import string
+
+fin=open('D:\\report.txt')
+word_freq={}
+word ={}
+line= fin.readline()
+list1 = []
+def sort_word(line):
+    for line in fin:
+        i = 0
+        line = line.replace('-','')
+        for word in line.split():
+            word = word.strip(string.punctuation+string.whitespace)
+            i = i + 1
+            #print(word,1)
+            list1.append(word)
+            word_freq(word) = word_freq.get(word,0)+1
+    print(i)
+    listnew = sorted(list1)
+    print(list1)
+    return listnew
+listnew = sort_word(line)
+print(listnew)
+#word_fre = sort_word()
+#print(list1[0:19],list1[len(list1)-20:len(list1)])
+
+#sort_word(line)
+
+
+def is_palindrome_new(word):
+    if word[0:] == word[::-1]:
+    
+        print(word)
+    else:
+        print("False")
+
+    
+def frequent(word_freq):
+    t = {}
+    for key,value in word_freq.items():
+        t.append((value,key))
+    t.sort(reverse = True)
+    return t 
+        
+
+
+
+import string
+
+fin=open('D:\\report.txt')
+word_freq={}
+word ={}
+line= fin.readline()
+list1 = []
+def sort_word(line):
+    for line in fin:
+        i = 0
+        line = line.replace('-','')
+        for word in line.split():
+            word = word.strip(string.punctuation+string.whitespace)
+            i = i + 1
+            #print(word,1)
+            list1.append(word)
+            word_freq(word) = word_freq.get(word,0)+1
+    print(i)
+    listnew = sorted(list1)
+    print(list1)
+    return listnew
+listnew = sort_word(line)
+print(listnew)
+#word_fre = sort_word()
+#print(list1[0:19],list1[len(list1)-20:len(list1)])
+
+#sort_word(line)
+
+
+def is_palindrome_new(word):
+    if word[0:] == word[::-1]:
+    
+        print(word)
+    else:
+        print("False")
+
+    
+def frequent(word_freq):
+    t = {}
+    for key,value in word_freq.items():
+        t.append((value,key))
+    t.sort(reverse = True)
+    return t
