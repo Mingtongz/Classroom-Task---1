@@ -1,90 +1,62 @@
 import string
-
-fin=open('D:\\report.txt')
-word_freq={}
-word ={}
-line= fin.readline()
-list1 = []
-def sort_word(line):
-    for line in fin:
-        i = 0
-        line = line.replace('-','')
-        for word in line.split():
-            word = word.strip(string.punctuation+string.whitespace)
-            i = i + 1
-            #print(word,1)
-            list1.append(word)
-            word_freq(word) = word_freq.get(word,0)+1
-    print(i)
-    listnew = sorted(list1)
-    print(list1)
-    return listnew
-listnew = sort_word(line)
-print(listnew)
-#word_fre = sort_word()
-#print(list1[0:19],list1[len(list1)-20:len(list1)])
-
-#sort_word(line)
-
+fin = open('D:\\task.txt')
+line = fin.readline()
+list1=[]
+t =dict()
+palindromelist=[]
+listsmall=[]
+listsort=[]
 
 def is_palindrome_new(word):
-    if word[0:] == word[::-1]:
-    
-        print(word)
+    if word[0:] == word[::-1]:    
+        return word
     else:
-        print("False")
-
+        return 0
     
-def frequent(word_freq):
-    t = {}
-    for key,value in word_freq.items():
-        t.append((value,key))
-    t.sort(reverse = True)
-    return t 
         
+def frequent(word,t):
+    if word not in t:
+        t[word] = 1
+    else:
+        t[word] +=1
+    return t
 
-
-
-import string
-
-fin=open('D:\\report.txt')
-word_freq={}
-word ={}
-line= fin.readline()
-list1 = []
-def sort_word(line):
+def sort_word(word,listsort):
+    if word not in listsort:
+        listsort.append(word)
+    else:
+        return None
+    return listsort
+def mainfunction(line):
+    for word in line.split():
+        word = word.strip(string.punctuation+string.whitespace)
+        list1.append(word)
+        frequent(word,t)
+        if is_palindrome_new(word):
+                palindromword = is_palindrome_new(word)
+                palindromelist.append(palindromword)
+        sort_word(word,listsort)
     for line in fin:
-        i = 0
         line = line.replace('-','')
         for word in line.split():
             word = word.strip(string.punctuation+string.whitespace)
-            i = i + 1
-            #print(word,1)
             list1.append(word)
-            word_freq(word) = word_freq.get(word,0)+1
-    print(i)
-    listnew = sorted(list1)
-    print(list1)
+            frequent(word,t)
+            if is_palindrome_new(word):
+                palindromeword = is_palindrome_new(word)
+                if palindromeword not in palindromelist:
+                    palindromelist.append(palindromeword)
+        sort_word(word,listsort)
+    listnew = sorted(listsort)
+    print(max(t,key=t.get),"this word occur most frenquent,and it occur",t[max(t,key=t.get)],"times")
+    print(palindromelist,"thoes words are palindrome word")
     return listnew
-listnew = sort_word(line)
-print(listnew)
-#word_fre = sort_word()
-#print(list1[0:19],list1[len(list1)-20:len(list1)])
+listnew = mainfunction(line)
 
-#sort_word(line)
-
-
-def is_palindrome_new(word):
-    if word[0:] == word[::-1]:
-    
-        print(word)
-    else:
-        print("False")
-
-    
-def frequent(word_freq):
-    t = {}
-    for key,value in word_freq.items():
-        t.append((value,key))
-    t.sort(reverse = True)
-    return t
+print("the largest 4 word:",listnew[0:3])
+def print_smallest_word(listnew):
+    for i in range(2):
+        listsmall.append(listnew[-(i+1)])
+    return listsmall
+listsmall = print_smallest_word(listnew)
+print("the smallest words are:",listsmall)
